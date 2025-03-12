@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Parse ICS File{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3>Parse ICS File</h3>
+            </div>
+            <div class="card-body">
+                <p class="lead">Upload an ICS file to view its contents</p>
+                
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="ics_file" class="form-label">Select ICS File</label>
+                        <input type="file" class="form-control" id="ics_file" name="ics_file" accept=".ics">
+                        <div class="form-text">Upload a valid iCalendar (.ics) file</div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Parse File</button>
+                        <a href="/" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header bg-light">
+                <h4>Don't have an ICS file?</h4>
+            </div>
+            <div class="card-body">
+                <p>You can download a sample ICS file to test this feature:</p>
+                <a href="/sample" class="btn btn-outline-primary">Download Sample ICS</a>
+                
+                <hr>
+                
+                <p>Or you can create your own ICS file:</p>
+                <a href="/create" class="btn btn-outline-primary">Create ICS File</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}AI-Generated Event{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<style>
+    .event-detail {
+        margin-bottom: 1.5rem;
+    }
+    .event-label {
+        font-weight: bold;
+        color: #495057;
+    }
+    .event-value {
+        font-size: 1.1rem;
+    }
+    .download-btn {
+        margin-top: 1.5rem;
+    }
+    .bi {
+        margin-right: 0.5rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h3><i class="bi bi-check-circle-fill"></i> Event Generated Successfully</h3>
+            </div>
+            <div class="card-body">
+                <p class="lead">Your AI-generated calendar event is ready!</p>
+                
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h4>{{ event.summary }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 event-detail">
+                                <div class="event-label">Description:</div>
+                                <div class="event-value">{{ event.description }}</div>
+                            </div>
+                            
+                            <div class="col-md-6 event-detail">
+                                <div class="event-label">Location:</div>
+                                <div class="event-value">{{ event.location }}</div>
+                            </div>
+                            
+                            <div class="col-md-6 event-detail">
+                                <div class="event-label">Duration:</div>
+                                <div class="event-value">
+                                    {% set duration_minutes = (event.end - event.start).total_seconds() // 60 %}
+                                    {{ duration_minutes }} minutes
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 event-detail">
+                                <div class="event-label">Start Time:</div>
+                                <div class="event-value">{{ event.start.strftime('%A, %B %d, %Y') }}<br>{{ event.start.strftime('%I:%M %p') }}</div>
+                            </div>
+                            
+                            <div class="col-md-6 event-detail">
+                                <div class="event-label">End Time:</div>
+                                <div class="event-value">{{ event.end.strftime('%A, %B %d, %Y') }}<br>{{ event.end.strftime('%I:%M %p') }}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-grid gap-2 download-btn">
+                            <a href="{{ url_for('download_ics', filename=filename) }}" class="btn btn-primary btn-lg">
+                                <i class="bi bi-download"></i> Download ICS File
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <a href="/genai" class="btn btn-outline-primary">
+                        <i class="bi bi-plus-circle"></i> Generate Another Event
+                    </a>
+                    <a href="/" class="btn btn-outline-secondary">
+                        <i class="bi bi-house"></i> Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header bg-light">
+                <h4>What's Next?</h4>
+            </div>
+            <div class="card-body">
+                <p>You can now:</p>
+                <ul>
+                    <li>Download the ICS file and import it into your calendar application</li>
+                    <li>Share the event with colleagues by sending them the ICS file</li>
+                    <li>Edit the event details in your calendar after importing</li>
+                </ul>
+                
+                <div class="alert alert-info">
+                    <i class="bi bi-lightbulb-fill"></i> <strong>Tip:</strong> Most calendar applications like Google Calendar, Microsoft Outlook, and Apple Calendar support importing ICS files.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

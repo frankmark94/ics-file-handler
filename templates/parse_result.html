@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}ICS Parse Results{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h3>ICS File Parsed Successfully</h3>
+            </div>
+            <div class="card-body">
+                <p class="lead">Found {{ events|length }} event(s) in the ICS file</p>
+                
+                <div class="d-flex justify-content-end mb-3">
+                    <a href="/parse" class="btn btn-outline-primary me-2">Parse Another File</a>
+                    <a href="/" class="btn btn-outline-secondary">Back to Home</a>
+                </div>
+                
+                {% if events %}
+                    {% for event in events %}
+                        <div class="card mb-4">
+                            <div class="card-header bg-light">
+                                <h4>{{ event.summary }}</h4>
+                            </div>
+                            <div class="card-body">
+                                {% if event.error %}
+                                    <div class="alert alert-danger">
+                                        Error: {{ event.error }}
+                                    </div>
+                                {% else %}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p><strong>Description:</strong><br>{{ event.description }}</p>
+                                            <p><strong>Location:</strong><br>{{ event.location }}</p>
+                                            <p><strong>UID:</strong><br>{{ event.uid }}</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><strong>Start Time:</strong><br>{{ event.start }}</p>
+                                            <p><strong>End Time:</strong><br>{{ event.end }}</p>
+                                            <p><strong>Created:</strong><br>{{ event.created }}</p>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-warning">
+                        No events found in the ICS file.
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header bg-light">
+                <h4>Technical Details</h4>
+            </div>
+            <div class="card-body">
+                <p>The ICS file was parsed using the <code>icalendar</code> Python library.</p>
+                <p>Each event in an ICS file is represented by a <code>VEVENT</code> component, which contains properties like <code>SUMMARY</code>, <code>DESCRIPTION</code>, <code>LOCATION</code>, <code>DTSTART</code>, and <code>DTEND</code>.</p>
+                <p>Want to create your own ICS file? <a href="/create">Click here</a> to use our ICS creation tool.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

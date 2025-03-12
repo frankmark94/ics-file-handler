@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}ICS File Handler - Home{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<style>
+    .bi {
+        margin-right: 0.5rem;
+    }
+    .feature-card {
+        transition: transform 0.3s ease;
+    }
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+    .ai-card {
+        border-color: #6f42c1;
+    }
+    .ai-card .card-header {
+        background-color: #6f42c1;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card text-center mb-4">
+            <div class="card-header bg-primary text-white">
+                <h2>Welcome to ICS File Handler</h2>
+            </div>
+            <div class="card-body">
+                <p class="lead">A simple tool for working with iCalendar (.ics) files</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-4">
+                        <div class="card h-100 feature-card">
+                            <div class="card-body">
+                                <i class="bi bi-file-earmark-text fs-1 text-primary mb-3"></i>
+                                <h5 class="card-title">Parse ICS Files</h5>
+                                <p class="card-text">Upload and view the contents of an existing ICS file</p>
+                                <a href="/parse" class="btn btn-primary">
+                                    <i class="bi bi-search"></i>Parse ICS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 feature-card">
+                            <div class="card-body">
+                                <i class="bi bi-calendar-plus fs-1 text-primary mb-3"></i>
+                                <h5 class="card-title">Create ICS Files</h5>
+                                <p class="card-text">Create a new calendar event and export it as an ICS file</p>
+                                <a href="/create" class="btn btn-primary">
+                                    <i class="bi bi-pencil"></i>Create ICS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 feature-card ai-card">
+                            <div class="card-header text-white">
+                                <span class="badge bg-warning text-dark">New!</span> AI-Powered
+                            </div>
+                            <div class="card-body">
+                                <i class="bi bi-magic fs-1 text-purple mb-3" style="color: #6f42c1;"></i>
+                                <h5 class="card-title">AI Event Generator</h5>
+                                <p class="card-text">Let AI create a calendar event based on your meeting topic</p>
+                                <a href="/genai" class="btn btn-primary" style="background-color: #6f42c1; border-color: #6f42c1;">
+                                    <i class="bi bi-stars"></i>Try AI Generator
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <p>New to ICS files? Download a sample file to see how they work:</p>
+                    <a href="/sample" class="btn btn-outline-primary">
+                        <i class="bi bi-download"></i>Download Sample ICS
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                <p>ICS files are used by calendar applications like Google Calendar, Outlook, and Apple Calendar</p>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header bg-light">
+                <h4>About ICS Files</h4>
+            </div>
+            <div class="card-body">
+                <p>ICS (iCalendar) files are plain text files used to share calendar events, meetings, reminders, and tasks. They use a standardized format defined by RFC 5545.</p>
+                
+                <p>A simple ICS file structure looks like this:</p>
+                
+                <pre class="bg-light p-3"><code>BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Example Corp.//CalDAV Client//EN
+BEGIN:VEVENT
+UID:12345678@example.com
+DTSTAMP:20250311T130000Z
+DTSTART:20250315T133000Z
+DTEND:20250315T150000Z
+SUMMARY:Team Meeting
+DESCRIPTION:Weekly team sync-up
+LOCATION:Conference Room A
+END:VEVENT
+END:VCALENDAR</code></pre>
+                
+                <p>This tool helps you create and parse these files without needing to understand the technical details.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

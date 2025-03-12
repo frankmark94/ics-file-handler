@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+        }
+        h1 {
+            color: #333;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: #f9f9f9;
+        }
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Direct HTML Test Page</h1>
+    <p>This page is being served directly as an HTML file, not through Flask.</p>
+    
+    <div class="card">
+        <h2>Test Links</h2>
+        <p>Click these links to test if the Flask routes are working:</p>
+        <div class="links">
+            <a href="http://localhost:5000/" class="btn">Home</a>
+            <a href="http://localhost:5000/test" class="btn">Test Route</a>
+            <a href="http://localhost:5000/genai" class="btn">GenAI Route</a>
+            <a href="http://localhost:5000/hello" class="btn">Hello Route</a>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2>IP Address Links</h2>
+        <p>Try using the IP address instead of localhost:</p>
+        <div class="links">
+            <a href="http://127.0.0.1:5000/" class="btn">Home (127.0.0.1)</a>
+            <a href="http://127.0.0.1:5000/genai" class="btn">GenAI (127.0.0.1)</a>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h2>Network IP Links</h2>
+        <p>Try using your network IP:</p>
+        <div class="links">
+            <a href="http://10.0.0.144:5000/" class="btn">Home (10.0.0.144)</a>
+            <a href="http://10.0.0.144:5000/genai" class="btn">GenAI (10.0.0.144)</a>
+        </div>
+    </div>
+    
+    <script>
+        // Simple script to check if the page loaded
+        console.log("Direct HTML page loaded successfully");
+    </script>
+</body>
+</html> 

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}AI-Generated ICS File{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h3>AI-Generated Calendar Event</h3>
+            </div>
+            <div class="card-body">
+                <p class="lead">Let AI create a calendar event for you based on a meeting topic</p>
+                
+                <form method="POST">
+                    <div class="form-group mb-4">
+                        <label for="meeting_topic" class="form-label">Meeting Topic</label>
+                        <input type="text" class="form-control form-control-lg" id="meeting_topic" name="meeting_topic" required 
+                               placeholder="e.g., Marketing Strategy, Product Launch, Team Building">
+                        <div class="form-text">Enter a general topic for your meeting, and AI will generate all the details</div>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-magic"></i> Generate with AI
+                        </button>
+                        <a href="/" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card mt-4">
+            <div class="card-header bg-light">
+                <h4>How It Works</h4>
+            </div>
+            <div class="card-body">
+                <p>Our AI will generate a complete calendar event based on your meeting topic, including:</p>
+                <ul>
+                    <li><strong>Meeting Title:</strong> A descriptive title based on your topic</li>
+                    <li><strong>Description:</strong> Relevant meeting agenda and details</li>
+                    <li><strong>Location:</strong> An appropriate meeting location</li>
+                    <li><strong>Date & Time:</strong> A suitable date and duration in the near future</li>
+                </ul>
+                <p>The generated event will be available as an ICS file that you can import into your calendar application.</p>
+                
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle-fill"></i> Want more control? Use our <a href="/create">standard form</a> to create a calendar event with custom details.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<style>
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    .bi {
+        margin-right: 0.5rem;
+    }
+</style>
+{% endblock %} 
